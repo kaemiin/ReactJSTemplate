@@ -4,6 +4,7 @@ import { kea } from 'kea';
 import { call, put } from 'redux-saga/effects';
 import { defineMessages, injectIntl } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Button } from 'antd';
 import { isEmptyObj } from '../utils/MyHelper';
 import logo from '../assets/logo.svg';
 import ClownAPI from '../processes/Clown';
@@ -66,20 +67,21 @@ const logic = kea({
 });
 
 const Header = (props) => (
-    <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1 className="App-title">{props.title}</h1>
+    <header>
+        <img src={logo} alt="logo" />
+        <h1>{props.title}</h1>
     </header>
 );
 
 const Main = (props) => (
-    <div className="App">
+    <div className="context-height">
         <Header title={props.fullTitle} />
-        <p className="App-intro">
+        <p>
             {props.intl.formatMessage(messages.systemError)}
         </p>
         <FontAwesomeIcon icon="coffee" />
         <h1>Test</h1>
+        <Button type="primary">Button</Button>
     </div>
 );
 

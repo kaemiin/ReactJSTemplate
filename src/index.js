@@ -4,6 +4,7 @@ import { connect, Provider } from 'react-redux';
 import { addLocaleData, IntlProvider } from 'react-intl';
 import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
+import { LocaleProvider } from 'antd';
 import { history, store } from './store';
 import Routes from './routes';
 import { getLanguage, setLanguage } from './constants/Config';
@@ -45,11 +46,13 @@ const App = connect(state => ({
 
 ReactDOM.render(
     <Provider store={store}>
-        <IntlProvider locale={locale.locale} messages={locale.messages}>
-            <ConnectedRouter history={history}>
-                <App />
-            </ConnectedRouter>
-        </IntlProvider>
+        <LocaleProvider locale={locale.antd}>
+            <IntlProvider locale={locale.locale} messages={locale.messages}>
+                <ConnectedRouter history={history}>
+                    <App />
+                </ConnectedRouter>
+            </IntlProvider>
+        </LocaleProvider>
     </Provider>, document.getElementById('root'));
 
 registerServiceWorker();
