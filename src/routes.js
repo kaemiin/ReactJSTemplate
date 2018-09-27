@@ -4,7 +4,7 @@ import Main from './components/Main';
 
 const Routes = () => (
     <div>
-        <Route exact path="/" name="Main" component={Main} />        
+        <Route exact path="/" name="Main" component={Main} />
     </div>
 );
 

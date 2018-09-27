@@ -15,7 +15,7 @@ docker run -it -d -v $(pwd):/workspace -p 3000:3000 -p 6380:6380 -p 19000:19000 
 ## Code Style
 
 ```
-https://github.com/palantir/tslint
+https://github.com/airbnb/javascript
 ```
 
 ## Project setup
