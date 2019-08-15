@@ -1,7 +1,8 @@
 const { injectBabelPlugin } = require('react-app-rewired');
 const rewireSass = require('react-app-rewire-scss');
-const rewireLess = require("react-app-rewire-less");
-const rewirePolyfills = require("@baristalabs/react-app-rewire-polyfills");
+const rewireLess = require('react-app-rewire-less');
+const rewirePolyfills = require('@baristalabs/react-app-rewire-polyfills');
+const rewireWebpackBundleAnalyzer = require('react-app-rewire-webpack-bundle-analyzer');
 
 module.exports = function override(config, env) {
     config = rewireSass(config, env);
@@ -17,6 +18,19 @@ module.exports = function override(config, env) {
     })(config, env);
     config = rewirePolyfills(config, env);
     config = injectBabelPlugin('babel-plugin-transform-runtime', config);
+    if (env === 'production') {
+        config = rewireWebpackBundleAnalyzer(config, env, {
+            analyzerMode: 'static',
+            reportFilename: 'report.html'
+        });
+        config.module.rules.push({
+            loader: 'webpack-ant-icon-loader',
+            enforce: 'pre',
+            include: [
+                require.resolve('@ant-design/icons/lib/dist')
+            ]
+        });
+    }
     // do stuff with the webpack config...
     return config;
 }

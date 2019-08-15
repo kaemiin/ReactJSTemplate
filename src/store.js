@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { activatePlugin, keaReducer } from 'kea';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
-import createHashHistory from 'history/createHashHistory';
+import { createHashHistory } from 'history';
 import sagaPlugin, { keaSaga } from 'kea-saga';
 import createSagaMiddleware from 'redux-saga';
 import { isEmptyObj } from './utils/MyHelper';
